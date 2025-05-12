@@ -9,7 +9,7 @@ st.set_page_config(page_title="Avalanche Data Set",
 st.title("🏔️ Avalanche Data Set")
 
 # Connect to Snowflake
-df = st.connection("snowflake").query("SELECT * FROM avalanche_db.public.customer_reviews;").to_pandas()
+df = st.connection("snowflake").query("SELECT * FROM avalanche_db.public.customer_reviews;")
 
 # Ensure SENTIMENT_SCORE is numeric
 df['SENTIMENT_SCORE'] = pd.to_numeric(df['SENTIMENT_SCORE'])
