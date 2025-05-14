@@ -2,7 +2,7 @@ import streamlit as st
 
 st.title("❄️ Using Snowflake on Streamlit Community Cloud")
 
-tabs = st.tabs("Access database", "Use Cortex")
+tabs = st.tabs(["Access database", "Use Cortex"])
 
 with tabs[0]:
   conn = st.connection("snowflake")
