@@ -40,7 +40,7 @@ with tabs[1]:
   if st.button("Submit", type='primary'):
     response = conn.query(f"SELECT SNOWFLAKE.CORTEX.COMPLETE('claude-3-5-sonnet', '{prompt}') as RESPONSE;")
     response_value = response.loc[0, 'RESPONSE']
-    st.markdown(response_value)
+    st.code(response_value)
 
   with st.expander("Show Code"):
     st.code(code_1)
