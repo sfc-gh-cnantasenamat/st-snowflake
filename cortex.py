@@ -1,24 +1,14 @@
-# import streamlit as st
-# from snowflake.snowpark.context import get_active_session
-
-# session = get_active_session()
-
-# st.title("🤖 Snowflake Cortex")
-
-# response = session.sql("SELECT SNOWFLAKE.CORTEX.COMPLETE('claude-3-5-sonnet', 'What is Python?') as RESPONSE;")
-# st.write(response)
-
-#####
 import streamlit as st
 
-st.title('🎈 App Name')
+st.title("❄️ Using Snowflake on Streamlit Community Cloud")
 
 conn = st.connection("snowflake")
 df = conn.query("SELECT * FROM avalanche_db.public.customer_reviews;")
 df
 
-response = conn.query("SELECT SNOWFLAKE.CORTEX.COMPLETE('claude-3-5-sonnet', 'What is Python?') as RESPONSE;")
-st.write(response)
 
-response_value = response.loc[0, 'RESPONSE']
-st.write(response_value)
+prompt = st.text_input('What do you want to know?', placeholder='Ask a question')
+if st.button("Submit", type='primary'):
+  response = conn.query(f"SELECT SNOWFLAKE.CORTEX.COMPLETE('claude-3-5-sonnet', {prompt}) as RESPONSE;")
+  response_value = response.loc[0, 'RESPONSE']
+  st.markdown(response_value)
