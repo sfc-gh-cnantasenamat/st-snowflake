@@ -1,10 +1,8 @@
 import streamlit as st
-from snowflake.cortex import complete
+from snowflake.snowpark.context import get_active_session
+
+session = get_active_session()
 
 st.title("🤖 Snowflake Cortex")
 
-code = 'complete("claude-3-5-sonnet", "What is Python?")'
-st.code(code)
-
-response = complete('claude-3-5-sonnet',"What is Python?")
-st.write(response)
+st.echo('session.sql("SELECT SNOWFLAKE.CORTEX.COMPLETE('claude-3-5-sonnet', 'What is Python?') as RESPONSE;")')
