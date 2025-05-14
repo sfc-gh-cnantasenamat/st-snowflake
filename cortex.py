@@ -8,17 +8,11 @@
 # response = session.sql("SELECT SNOWFLAKE.CORTEX.COMPLETE('claude-3-5-sonnet', 'What is Python?') as RESPONSE;")
 # st.write(response)
 
-from snowflake.core import Root
-from snowflake.snowpark.context import get_active_session
+#####
+import streamlit as st
 
-def embed_service():
-    # Initialize Snowflake session and root
-    session = get_active_session()
-    root = Root(session)
+st.title('🎈 App Name')
 
-    # Send embed_request request and process response
-    response = root.cortex_embed_service.embed("e5-base-v2", ['foo', 'bar'])
-    print(response)
-
-if __name__ == "__main__":
-    embed_service()
+conn = st.connection("snowflake")
+df = conn.query("SELECT * FROM avalanche_db.public.customer_reviews;")
+df
