@@ -5,4 +5,5 @@ session = get_active_session()
 
 st.title("🤖 Snowflake Cortex")
 
-st.echo('session.sql("SELECT SNOWFLAKE.CORTEX.COMPLETE('claude-3-5-sonnet', 'What is Python?') as RESPONSE;")')
+response = session.sql("SELECT SNOWFLAKE.CORTEX.COMPLETE('claude-3-5-sonnet', 'What is Python?') as RESPONSE;")
+st.write(response)
