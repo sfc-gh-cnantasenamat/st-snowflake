@@ -18,6 +18,7 @@ df = conn.query("SELECT * FROM avalanche_db.public.customer_reviews;")
 df
 
 response = conn.query("SELECT SNOWFLAKE.CORTEX.COMPLETE('claude-3-5-sonnet', 'What is Python?') as RESPONSE;")
-st.write(response['RESPONSE'])
+st.write(response)
 
-st.write(type(response))
+response_value = response.loc[0, 'RESPONSE']
+st.write(response_value)
